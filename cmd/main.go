@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -10,13 +9,23 @@ import (
 )
 
 func main() {
+	//load .env file
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading env variables")
 	}
-	fmt.Println("Go")
 
+	//Database initialization
 	s := db.Service{}
-	s.Init()
+	s.Init(
+		os.Getenv("PG_HOST"),
+		os.Getenv("PG_PORT"),
+		os.Getenv("PG_USER"),
+		os.Getenv("PG_PASSWORD"),
+		os.Getenv("PG_NAME"),
+		os.Getenv("PG_SSL"),
+	)
+
+	//Start the app
 	s.Start(os.Getenv("HTTP_PORT"))
 }
