@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   app:
+    # The app service definition
     build: ./
     container_name: restapi
     hostname: restapi
@@ -13,6 +14,7 @@ services:
       - POSTGRES_PASSWORD=${PG_PASSWORD}
 
   data-base:
+    # Database service definition
     restart: always
     image: postgres:14-alpine
     container_name: postgres
