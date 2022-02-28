@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+//entry point for the application
 func main() {
 	//load .env file
 	err := godotenv.Load()
